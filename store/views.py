@@ -18,7 +18,7 @@ def paycheck(request):
     print(price_from_form)
     print(total_charge)
     print("Charging credit card...")
-    order_id = Order.objects.create(quantity_ordered=quantity_from_form, total_price=total_charge)
+    Order.objects.create(quantity_ordered=quantity_from_form, total_price=total_charge)
     return redirect('/paycheck/checkout')
 
 
