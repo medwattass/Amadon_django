@@ -19,12 +19,12 @@ def paycheck(request):
     print(total_charge)
     print("Charging credit card...")
     order_id = Order.objects.create(quantity_ordered=quantity_from_form, total_price=total_charge)
-    return redirect('/paycheck/checkout/' + str(order_id.id))
+    return redirect('/paycheck/checkout')
 
 
-def checkout(request, order_id):
+def checkout(request):
     context = {
-        "quantity": Order.objects.get(id=int(order_id)).quantity_ordered,
-        "price": Order.objects.get(id=int(order_id)).total_price
+        "quantity": Order.objects.last().quantity_ordered,
+        "price": Order.objects.last().total_price
     }
     return render(request, "store/checkout.html", context)
