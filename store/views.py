@@ -14,10 +14,6 @@ def paycheck(request):
     id_product = int(request.POST["price"])
     price_from_form = Product.objects.get(id=id_product).price
     total_charge = quantity_from_form * price_from_form
-    print(quantity_from_form)
-    print(price_from_form)
-    print(total_charge)
-    print("Charging credit card...")
     Order.objects.create(quantity_ordered=quantity_from_form, total_price=total_charge)
     return redirect('/paycheck/checkout')
 
